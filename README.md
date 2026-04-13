@@ -146,7 +146,7 @@ cp configs/config.example.yaml configs/config.yaml
 
 ```yaml
 paths:
-  vid_score_path: ~/data/PS_video_path_diag.csv
+  vid_score_path: ~/data/PS_video_path.csv
   score_csv_path: ~/data/final_scores_summary.csv
   hand_path:      ~/models/hand_landmarker.task
   log_csv_path:   ~/results/tracking_logs.csv
