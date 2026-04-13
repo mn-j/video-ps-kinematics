@@ -2,11 +2,6 @@
 
 Quantitative kinematic feature extraction from consumer-camera video recordings of the **hand pronation-supination (PS) motor task** (MDS-UPDRS item 3.6) for Parkinson's disease and PSP research.
 
-
-
-https://github.com/user-attachments/assets/aa208bb9-a9b1-4aa0-b60f-e5196276f1ac
-
-
 ---
 
 ## Repository layout
