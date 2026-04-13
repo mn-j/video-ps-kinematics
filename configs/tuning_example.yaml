@@ -1,0 +1,97 @@
+# Tuning profile for 25 fps videos.
+#
+# This file is loaded by scripts/run_pipeline.py via
+# ps_kinematics.config.loader.load_tuning_profile and then passed through
+# apply_tuning_overrides() at worker startup.
+
+# ─── Frame-rate cap ──────────────────────────────────────────────────────────
+# When a video's native fps exceeds this value, process only every Nth frame
+# (stride = floor(native_fps / TARGET_PROCESSING_FPS)).  Set to 0 to disable.
+# Useful for high-fps datasets (e.g. TULIP at 80 fps) where per-frame
+# MediaPipe inference would exceed the worker timeout.
+TARGET_PROCESSING_FPS: 30
+
+# ─── Tracking ────────────────────────────────────────────────────────────────
+TRACK_MATCH_THRESH: 0.13
+MAX_GAP: 5
+MAX_JUMP_PER_FRAME: 0.06
+FILL_MAX_DIST: 0.06
+HANDEDNESS_PENALTY_MULT: 4.7
+ROT_AVG_THRESH: 0.001
+LANDMARK_SMOOTH_WINDOW: 3
+
+# ─── Keypoint reliability & fill quality ─────────────────────────────────────
+FILL_ITERATIONS: 2
+USE_CLAHE_ON_FILL: true
+ROI_REDETECT_PADDING: 0.6
+VISIBILITY_THRESHOLD: 0.1
+LM_OUTLIER_WINDOW: 6
+LM_OUTLIER_THRESH: 0.12
+CYCLE_NAN_THRESHOLD: 0.3
+USE_PCA_ANGLE: true
+
+# ─── Adaptive visibility threshold ───────────────────────────────────────────
+ADAPTIVE_VISIBILITY: true
+ADAPTIVE_VIS_PERCENTILE: 53
+ADAPTIVE_VIS_FLOOR: 0.14
+
+# ─── Pre-filter angle detrending ─────────────────────────────────────────────
+DETREND_POLY_ORDER: 1
+
+# ─── Wrist-Z cycle-detection confirmation ────────────────────────────────────
+USE_WRIST_Z_CONFIRMATION: true
+WRIST_Z_CONFIRM_WINDOW: 10
+WRIST_Z_PROM_BOOST: 2
+WRIST_Z_MIN_VALID_FRAC: 0.57
+WRIST_Z_MIN_SNR: 3
+
+# ─── Adaptive landmark smoothing (One-Euro Filter) ───────────────────────────
+USE_ONE_EURO: true
+ONEEURO_MIN_CUTOFF: 4.6
+ONEEURO_BETA: 40.0
+ONEEURO_D_CUTOFF: 4.8
+
+# ─── PS-activity trimming ────────────────────────────────────────────────────
+TRIM_TO_PS_ACTIVITY: true
+MAX_PS_DURATION_S: 13
+MIN_PS_DURATION_S: 4
+PS_ACTIVITY_WINDOW_S: 0.94
+PS_ACTIVITY_PERCENTILE: 75
+PS_ACTIVITY_THRESHOLD_RATIO: 0.3
+PS_MERGE_GAP_S: 2.25
+
+# ─── Signal processing (KinematicAnalyzer) ───────────────────────────────────
+cutoff_hz: 3.5
+highpass_hz: 0.05
+prominence_deg: 3
+filter_order: 3
+max_movement_hz: 8
+adaptive_prom_frac: 0.05
+min_half_cycle_s: 0.09
+
+# ─── MediaPipe hand confidence thresholds ────────────────────────────────────
+min_hand_detection_confidence: 0.34
+min_hand_presence_confidence: 0.26
+min_tracking_confidence: 0.33
+
+# ─── Zero-crossing cycle-detection tuning ────────────────────────────────────
+ZCR_DC_WINDOW_CYCLES: 1.7
+STARTUP_TRANSIENT_FACTOR: 3
+ARREST_MIN_DURATION_S: 1.3
+
+
+# ─── Plot-video export ───────────────────────────────────────────────────────
+EXPORT_PLOT_VIDEO: true
+PLOT_WIDTH_RATIO: 0.95
+
+# ─── Runtime diagnostics ─────────────────────────────────────────────────────
+ENABLE_RUNTIME_DIAGNOSTICS: true
+
+# ─── Parallelism ─────────────────────────────────────────────────────────────
+NUM_WORKERS: null
+
+# Number of sub-processes to split each video's MediaPipe inference across.
+# Useful when you have more CPU cores than videos (e.g. 100 cores, 10 videos
+# → set --workers 10 + INTRA_VIDEO_WORKERS: 10 to use all 100 cores).
+# Total process count ≈ --workers × INTRA_VIDEO_WORKERS.  Default 1 = serial.
+INTRA_VIDEO_WORKERS: 1

@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "video-ps-kinematics"
+message: >-
+  If you use this software in your research, please cite it
+  using the metadata from this file.
+type: software
+authors:
+  - family-names: Aljalab
+    given-names: Mohamad Naseb
+license: MIT
+repository-code: "https://github.com/mn-j/video-ps-kinematics"
+keywords:
+  - parkinson-disease
+  - pronation-supination
+  - kinematics
+  - pose-estimation
+  - mds-updrs
+  - mediapipe
+abstract: >-
+  Quantitative kinematic feature extraction from consumer-camera
+  video recordings of the hand pronation-supination motor task
+  (MDS-UPDRS item 3.6) for Parkinson's disease and PSP research.

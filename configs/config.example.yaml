@@ -1,0 +1,58 @@
+# Example pipeline configuration.
+
+paths:
+  # CSV listing video paths (and optionally visit metadata).
+  # Required columns:
+  #   video_path  — absolute or relative path to each video file
+  # Optional columns:
+  #   visit       — visit number (integer)
+  vid_score_path: ~/data/PS_video_path.csv
+
+  # Clinical score CSV used for overlay text (e.g. final_scores_summary.csv).
+  # Required columns:
+  #   ids         — patient identifier (string)
+  # Optional columns (used for score lookup when available):
+  #   visit            — visit number (integer)
+  #   medication_state — "On" or "Off"
+  #   hand             — "Left" or "Right"
+  #   <score_column>   — clinical score (integer); column name set by score_column below
+  score_csv_path: ~/data/final_scores_summary.csv
+
+  # Clinical score column to render in the overlay.
+  score_column: ProS
+
+  # Path to the MediaPipe hand landmarker model file (.task).
+  # Download from https://developers.google.com/mediapipe/solutions/vision/hand_landmarker.
+  hand_path: ~/models/hand_landmarker.task
+
+  # Output tracking CSV.
+  log_csv_path: ~/results/tracking_logs.csv
+
+  # Per-video output directory (plot videos, signals, ...).
+  save_dir: ~/results/
+
+  # CSV mapping patient IDs to video IDs (used for overlay score lookup).
+  # Format: headerless, two columns:
+  #   column 1 — patient_id (string)
+  #   column 2 — Python tuple/list of video IDs, e.g. ('VID001', 'VID002')
+  id2vid_csv_path: ~/data/id2vid.csv
+
+  # Manual video-quality labels filter.
+  # Set to null if you don't have labels.
+  # Required columns (when set):
+  #   video_path     — path to the video file
+  #   quality_label  — integer 1 (best) to 3 (worst)
+  video_quality_labels_csv_path: ~/data/video_quality_labels.csv
+
+processing:
+  # Total number of videos to draw from vid_score_path.
+  # Set to null to process ALL videos in the CSV.
+  n_videos: null
+
+  # Only videos with quality_label <= threshold are kept.
+  # Valid values: 1 (best), 2, 3 (worst, effectively disables the filter).
+  video_quality_threshold: 3
+
+# Which tuning profile under configs/ to apply. Relative paths are resolved
+# relative to the directory containing this config file.
+tuning_profile: tuning_example.yaml

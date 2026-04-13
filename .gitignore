@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Model weights (users download separately)
+*.pt
+*.pth
+*.onnx
+*.task
+
+# User configs (only the *.example.yaml is tracked)
+configs/config.yaml
+configs/config_tulip.yaml
+configs/*.local.yaml
+.env
+
+# Research outputs
+results/
+outputs/
