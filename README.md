@@ -1,5 +1,9 @@
 # video-ps-kinematics
 
+<p align="center">
+  <img src="assets/demo_output.gif" alt="Demo: hand pronation-supination kinematic overlay" width="600">
+</p>
+
 Quantitative kinematic feature extraction from consumer-camera video recordings of the **hand pronation-supination (PS) motor task** (MDS-UPDRS item 3.6) for Parkinson's disease and PSP research.
 
 ---
