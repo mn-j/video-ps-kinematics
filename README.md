@@ -35,7 +35,7 @@ video-ps-kinematics/
 ├── configs/
 │   ├── config.example.yaml      #   Annotated template — copy to config.yaml
 │   ├── config_tulip.example.yaml#   TULIP dataset template
-│   ├── tuning_25fps.yaml        #   Pre-optimised tuning profile (25 fps)
+│   ├── tuning_example.yaml        #   Pre-optimised tuning profile (25 fps)
 │   └── tuning_enhanced_50fps.yaml
 ├── scripts/
 │   ├── run_pipeline.py          #   Main pipeline entry point
@@ -152,7 +152,7 @@ paths:
   log_csv_path:   ~/results/tracking_logs.csv
   save_dir:       ~/results/
 
-tuning_profile: tuning_25fps.yaml
+tuning_profile: tuning_example.yaml
 ```
 
 Override at runtime:
