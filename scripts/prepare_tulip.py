@@ -1,7 +1,7 @@
 """
 scripts/prepare_tulip.py — Convert the TULIP dataset into pipeline-compatible CSVs.
 
-The TULIP dataset (TU-Leuven Integrated Parkinsonism) uses a different
+The TULIP dataset (Kim et al., CVPR 2024) uses a different
 directory layout and labelling scheme from the primary PD-PS dataset.
 This script reads the TULIP directory tree and its Excel/CSV labels,
 then writes the three CSV files that ``run_pipeline.py`` expects:
